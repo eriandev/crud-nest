@@ -3,6 +3,7 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
 import { AppModule } from './app.module';
+import { initSwagger } from './app.swagger';
 import { SERVER_PORT } from './config/constants';
 
 async function bootstrap() {
@@ -19,6 +20,8 @@ async function bootstrap() {
             whitelist: true,
         }),
     );
+
+    initSwagger(app);
 
     await app.listen(port, '0.0.0.0');
     logger.log(`Server is running in ${await app.getUrl()}`);
