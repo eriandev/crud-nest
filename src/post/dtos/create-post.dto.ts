@@ -16,6 +16,7 @@ export class CreatePostDto {
     slug: string;
 
     @IsString()
+    @IsOptional()
     excerpt: string;
 
     @IsString()
@@ -26,13 +27,15 @@ export class CreatePostDto {
             PostCategory,
         )}'`,
     })
+    @IsOptional()
     category: PostCategory;
 
     @IsArray()
+    @IsOptional()
     @IsString({ each: true })
     tags: string[];
 
-    @IsOptional()
     @IsBoolean()
+    @IsOptional()
     status: boolean;
 }

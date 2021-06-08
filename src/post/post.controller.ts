@@ -16,13 +16,21 @@ export class PostController {
     constructor(private readonly postService: PostService) {}
 
     @Post()
-    createOne(@Body() createPostDto: CreatePostDto) {
-        return this.postService.create(createPostDto);
+    async createOne(@Body() createPostDto: CreatePostDto) {
+        const data = await this.postService.create(createPostDto);
+        return {
+            ok: true,
+            data,
+        };
     }
 
     @Get()
-    getAll() {
-        return this.postService.findAll();
+    async getAll() {
+        const data = await this.postService.findAll();
+        return {
+            ok: true,
+            data,
+        };
     }
 
     @Get(':id')
