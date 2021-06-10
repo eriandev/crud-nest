@@ -1,50 +1,26 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-    IsArray,
-    IsBoolean,
-    IsEnum,
-    IsOptional,
-    IsString,
-} from 'class-validator';
 
-import { EnumToString } from 'src/helpers';
 import { PostCategory } from '../enums';
 
 export class CreatePostDto {
     @ApiProperty()
-    @IsString()
-    title: string;
+    readonly title: string;
 
     @ApiProperty()
-    @IsString()
-    slug: string;
+    readonly slug: string;
 
     @ApiProperty()
-    @IsString()
-    @IsOptional()
-    excerpt: string;
+    readonly excerpt: string;
 
     @ApiProperty()
-    @IsString()
-    content: string;
+    readonly content: string;
 
     @ApiProperty()
-    @IsEnum(PostCategory, {
-        message: `Invalid option. The correct options are: '${EnumToString(
-            PostCategory,
-        )}'`,
-    })
-    @IsOptional()
-    category: PostCategory;
+    readonly category: PostCategory;
 
     @ApiProperty()
-    @IsArray()
-    @IsOptional()
-    @IsString({ each: true })
-    tags: string[];
+    readonly tags: string[];
 
     @ApiProperty()
-    @IsBoolean()
-    @IsOptional()
-    status: boolean;
+    readonly status: boolean;
 }
