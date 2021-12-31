@@ -9,20 +9,20 @@ import { TYPEORM_CONFIG } from './config/constants';
 import databaseConfig from './config/database.config';
 
 @Module({
-    imports: [
-        TypeOrmModule.forRootAsync({
-            inject: [ConfigService],
-            useFactory: (config: ConfigService) =>
-                config.get<TypeOrmModuleOptions>(TYPEORM_CONFIG),
-        }),
-        ConfigModule.forRoot({
-            isGlobal: true,
-            load: [databaseConfig],
-            envFilePath: '.env',
-        }),
-        PostModule,
-    ],
-    controllers: [AppController],
-    providers: [AppService],
+  imports: [
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) =>
+        config.get<TypeOrmModuleOptions>(TYPEORM_CONFIG),
+    }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [databaseConfig],
+      envFilePath: '.env',
+    }),
+    PostModule,
+  ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
